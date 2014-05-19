@@ -1,0 +1,43 @@
+{{define "base"}}<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+{{template "header" .}}
+</head>
+<body>
+    <!-- Menubar -->
+<nav class="navbar navbar-inverse navbar-fixed-top global-navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-target="#nav-collapse-1" data-toggle="collapse" type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Title of the site</a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav-collapse-1">
+      <ul class="nav navbar-nav navbar-right" style="text-transform: uppercase;">
+        {{range .Links}}
+        <li><a href="{{.Link}}" data-permalink="/" data-url="{{.Link}}">{{.Text}}</a></li>
+        {{end}}
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!-- End of Menubar -->
+  <div class="container main-content">
+    <div class="row">
+
+{{template "body" .}}
+	  </div>
+	{{if .Disqus}}
+	  <div id="disqus_thread"></div>
+        <script type="text/javascript">var disqus_shortname="{{.Disqus}}";var disqus_url={{.Durl}};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src="http://"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)})();        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+	{{end}}
+	</div>
+</body>
+</html>{{end}}
